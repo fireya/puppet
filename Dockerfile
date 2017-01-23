@@ -19,25 +19,21 @@ RUN export LANGUAGE=en_US.UTF-8 && \
  rm -f puppetlabs-release-pc1-xenial.deb && \
  apt-get update && \
  apt-get -y install puppetserver=2.7.2-1puppetlabs1 && \
- apt-get -y install sosreport && \
- apt-get -y install puppet-common && \
- apt-get -y install puppetmaster-common && \
- apt-get -y install puppetmaster-passenger && \
- gem install r10k && \
+ /opt/puppetlabs/puppet/bin/gem install r10k && \
  apt-get clean autoclean && \
  apt-get autoremove -y
  
 RUN echo "export PS1='\e[1;33m[\u@\h:\w]\$\e[m '" >> ~/.bashrc && \
- install -d -o root -g root -m 755 /etc/puppetlabs/code/environments/development/modules && \ 
- install -d -o root -g root -m 755 /etc/puppetlabs/code/environments/development/hieradata && \ 
- install -d -o root -g root -m 755 /etc/puppetlabs/code/environments/development/manifests && \ 
+ install -d -o puppet -g puppet -m 755 /etc/puppetlabs/code/environments/development/modules && \ 
+ install -d -o puppet -g puppet -m 755 /etc/puppetlabs/code/environments/development/hieradata && \ 
+ install -d -o puppet -g puppet -m 755 /etc/puppetlabs/code/environments/development/manifests && \ 
  install -d -o puppet -g puppet -m 771 /etc/puppetlabs-ssl && \
  rm --force --recursive /etc/puppetlabs/mcollective && \
  rm --force --recursive /etc/puppetlabs/puppet && \
  rm --force --recursive /etc/puppetlabs/puppetserver && \
- install -d -o root -g root -m 777 /local/puppet/config/mcollective && \
- install -d -o root -g root -m 777 /local/puppet/config/puppet && \
- install -d -o root -g root -m 777 /local/puppet/config/puppetserver && \
+ install -d -o puppet -g puppet -m 777 /local/puppet/config/mcollective && \
+ install -d -o puppet -g puppet -m 777 /local/puppet/config/puppet && \
+ install -d -o puppet -g puppet -m 777 /local/puppet/config/puppetserver && \
  ln -s /etc /local/puppet/config/r10k.yaml && \
  ln -s -t /etc/puppetlabs /local/puppet/config/mcollective && \
  ln -s -t /etc/puppetlabs /local/puppet/config/puppet && \
