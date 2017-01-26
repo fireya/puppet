@@ -19,6 +19,7 @@ RUN export LANGUAGE=en_US.UTF-8 && \
  rm -f puppetlabs-release-pc1-xenial.deb && \
  apt-get update && \
  apt-get -y install puppetserver=2.7.2-1puppetlabs1 && \
+ apt-get -y install git && \
  /opt/puppetlabs/puppet/bin/gem install r10k && \
  apt-get clean autoclean && \
  apt-get autoremove -y
@@ -34,7 +35,8 @@ RUN echo "export PS1='\e[1;33m[\u@\h:\w]\$\e[m '" >> ~/.bashrc && \
  install -d -o puppet -g puppet -m 777 /local/puppet/config/mcollective && \
  install -d -o puppet -g puppet -m 777 /local/puppet/config/puppet && \
  install -d -o puppet -g puppet -m 777 /local/puppet/config/puppetserver && \
- ln -s /etc /local/puppet/config/r10k.yaml && \
+ touch /local/puppet/config/r10k.yaml && \
+ ln -s /local/puppet/config/r10k.yaml /etc/r10k.yaml && \
  ln -s -t /etc/puppetlabs /local/puppet/config/mcollective && \
  ln -s -t /etc/puppetlabs /local/puppet/config/puppet && \
  ln -s -t /etc/puppetlabs /local/puppet/config/puppetserver
