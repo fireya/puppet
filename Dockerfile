@@ -25,21 +25,7 @@ RUN export LANGUAGE=en_US.UTF-8 && \
  apt-get autoremove -y
  
 RUN echo "export PS1='\e[1;33m[\u@\h:\w]\$\e[m '" >> ~/.bashrc && \
- install -d -o puppet -g puppet -m 755 /etc/puppetlabs/code/environments/development/modules && \ 
- install -d -o puppet -g puppet -m 755 /etc/puppetlabs/code/environments/development/hieradata && \ 
- install -d -o puppet -g puppet -m 755 /etc/puppetlabs/code/environments/development/manifests && \ 
- install -d -o puppet -g puppet -m 771 /etc/puppetlabs-ssl && \
- rm --force --recursive /etc/puppetlabs/mcollective && \
- rm --force --recursive /etc/puppetlabs/puppet && \
- rm --force --recursive /etc/puppetlabs/puppetserver && \
- install -d -o puppet -g puppet -m 777 /local/puppet/config/mcollective && \
- install -d -o puppet -g puppet -m 777 /local/puppet/config/puppet && \
- install -d -o puppet -g puppet -m 777 /local/puppet/config/puppetserver && \
- touch /local/puppet/config/r10k.yaml && \
- ln -s /local/puppet/config/r10k.yaml /etc/r10k.yaml && \
- ln -s -t /etc/puppetlabs /local/puppet/config/mcollective && \
- ln -s -t /etc/puppetlabs /local/puppet/config/puppet && \
- ln -s -t /etc/puppetlabs /local/puppet/config/puppetserver
+install -d -o puppet -g puppet -m 771 /etc/puppetlabs-ssl
   
 EXPOSE 8140
 
