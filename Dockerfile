@@ -20,8 +20,8 @@ RUN export LANGUAGE=en_US.UTF-8 && \
  apt-get update && \
  apt-get -y install puppetserver=2.7.2-1puppetlabs1 && \
  apt-get -y install git && \
- git config --global credential.helper 'store --file /etc/puppetlabs/.git-crecredentials' && \
  puppet resource package puppetdb-termini ensure=latest && \
+ puppetserver gem install hiera-regex && \
  /opt/puppetlabs/puppet/bin/gem install r10k && \
  apt-get clean autoclean && \
  apt-get autoremove -y
