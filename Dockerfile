@@ -23,6 +23,7 @@ RUN export LANGUAGE=en_US.UTF-8 && \
  puppet resource package puppetdb-termini ensure=latest && \
  puppetserver gem install hiera-regex && \
  /opt/puppetlabs/puppet/bin/gem install r10k && \
+ gem install hiera-regex && \
  apt-get clean autoclean && \
  apt-get autoremove -y
  
